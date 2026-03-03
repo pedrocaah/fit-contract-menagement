@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.UUID;
 
@@ -25,13 +24,17 @@ public class ContractEntity {
     @Column(nullable = false)
     private String enterpriseName;
     @Column(nullable = false)
-    private String enterpriseAdress;
+    private String legalName;
     @Column(nullable = false)
-    private String clientFullName;
+    private String enterpriseAdress;
+    @Column(name = "name_ceo", nullable = false)
+    private String nameCEO;
     @CreationTimestamp
     @Column(updatable = false)
     private Instant contractCreatedAt;
     @Column(nullable = false, unique = true)
-    private BigDecimal contractNumber;
+    private String contractNumber;
+    @Column
+    private String status;
 
 }

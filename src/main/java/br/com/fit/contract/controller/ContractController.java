@@ -1,6 +1,7 @@
 package br.com.fit.contract.controller;
 
 import br.com.fit.contract.dtos.CreateContractRequest;
+import br.com.fit.contract.dtos.CreateContractResponse;
 import br.com.fit.contract.service.ContractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,9 @@ public class ContractController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Void> createContract(@RequestBody CreateContractRequest request) {
+    public ResponseEntity<CreateContractResponse> createContract(@RequestBody CreateContractRequest request) {
         LOGGER.info("Receiving request to create contract to enterprise: {}", request.enterpriseName());
-        return ResponseEntity.created(URI.create(String.format("/contract/%s", service.createContract(request).contractNumber()))).build();
+        var response = service.createContract(request);
+        return ResponseEntity.created(URI.create(String.format("/contract/%s", response.contractNumber()))).body(response);
     }
 }

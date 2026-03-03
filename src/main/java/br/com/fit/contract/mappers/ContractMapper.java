@@ -12,7 +12,7 @@ public interface ContractMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "contractCreatedAt", ignore = true)
-    @Mapping(target = "contractNumber", expression = "java(new BigDecimal(request.numberCnpj().substring(0, 12)))")
+    @Mapping(target = "contractNumber", expression = "java(request.numberCnpj().substring(0, 12))")
     ContractEntity toContractEntity(CreateContractRequest request);
 
     @Mapping(target = "numberCnpj", source = "numberCnpj", qualifiedByName = "maskCnpj")
@@ -20,7 +20,6 @@ public interface ContractMapper {
 
     @Named("maskCnpj")
     default String maskCnpj(String numberCnpj) {
-        if (numberCnpj == null) return null;
         return numberCnpj.replaceAll("^\\d{3}|\\d{2}$", "***");
     }
 }
