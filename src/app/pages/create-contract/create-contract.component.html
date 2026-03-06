@@ -1,0 +1,55 @@
+<section class="page">
+  <div class="card">
+    <h2>Criar contrato</h2>
+    <p class="subtitle">Preencha os dados para registrar um novo contrato.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+      <div class="field">
+        <label for="numberCnpj">CNPJ</label>
+        <input id="numberCnpj" type="text" formControlName="numberCnpj" placeholder="Somente números" />
+        <small class="error" *ngIf="hasError('numberCnpj')">
+          Informe um CNPJ com 14 dígitos.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="enterpriseName">Nome da empresa</label>
+        <input id="enterpriseName" type="text" formControlName="enterpriseName" placeholder="Nome fantasia" />
+        <small class="error" *ngIf="hasError('enterpriseName')">
+          Campo obrigatório.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="legalName">Razão social</label>
+        <input id="legalName" type="text" formControlName="legalName" placeholder="Nome jurídico" />
+        <small class="error" *ngIf="hasError('legalName')">
+          Campo obrigatório.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="enterpriseAdress">Endereço</label>
+        <input id="enterpriseAdress" type="text" formControlName="enterpriseAdress" placeholder="Endereço da empresa" />
+        <small class="error" *ngIf="hasError('enterpriseAdress')">
+          Campo obrigatório.
+        </small>
+      </div>
+
+      <div class="field">
+        <label for="nameCEO">CEO</label>
+        <input id="nameCEO" type="text" formControlName="nameCEO" placeholder="Nome do CEO" />
+        <small class="error" *ngIf="hasError('nameCEO')">
+          Campo obrigatório.
+        </small>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Salvando...' : 'Criar contrato' }}
+      </button>
+    </form>
+
+    <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</section>
