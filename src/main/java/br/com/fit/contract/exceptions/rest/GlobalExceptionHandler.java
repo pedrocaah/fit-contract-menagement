@@ -1,6 +1,7 @@
 package br.com.fit.contract.exceptions.rest;
 
 import br.com.fit.contract.exceptions.ContractExistsException;
+import br.com.fit.contract.exceptions.ContractNotFound;
 import br.com.fit.contract.exceptions.model.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleContractExists(ContractExistsException ex) {
         var erro = buildErrorResponse(LocalDateTime.now(), 400, HttpStatus.BAD_REQUEST, ex.getMessage(), "/contracts");
         return ResponseEntity.badRequest().body(erro);
+    }
+
+    @ExceptionHandler(ContractNotFound.class)
+    public ResponseEntity<ErrorResponse> handleContractNotFound(ContractNotFound ex) {
+        var erro = buildErrorResponse(LocalDateTime.now(), 404, HttpStatus.NOT_FOUND, ex.getMessage(), "/contracts/{contractNumber}");
+        return ResponseEntity.status(404).body(erro);
     }
 
     private ErrorResponse buildErrorResponse(LocalDateTime errorMoment,
