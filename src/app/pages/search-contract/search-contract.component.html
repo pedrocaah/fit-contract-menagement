@@ -1,0 +1,32 @@
+<section class="page">
+  <div class="card">
+    <h2>Buscar contrato</h2>
+    <p class="subtitle">Informe o número do contrato para consultar os dados.</p>
+
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="form">
+      <div class="field">
+        <label for="contractNumber">Número do contrato</label>
+        <input id="contractNumber" type="text" formControlName="contractNumber" placeholder="Ex.: 01" />
+        <small class="error" *ngIf="hasSearchError()">Campo obrigatório.</small>
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Buscando...' : 'Buscar contrato' }}
+      </button>
+    </form>
+
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <div class="details" *ngIf="foundContract">
+      <h3>Detalhes do contrato</h3>
+      <p><strong>Número:</strong> {{ foundContract.contractNumber }}</p>
+      <p><strong>CNPJ:</strong> {{ foundContract.numberCnpj }}</p>
+      <p><strong>Nome da empresa:</strong> {{ foundContract.enterpriseName }}</p>
+      <p><strong>Razão social:</strong> {{ foundContract.legalName }}</p>
+      <p><strong>Endereço:</strong> {{ foundContract.enterpriseAdress }}</p>
+      <p><strong>CEO:</strong> {{ foundContract.nameCEO }}</p>
+      <p><strong>Status:</strong> {{ foundContract.status }}</p>
+      <p><strong>Criado em:</strong> {{ foundContract.contractCreatedAt | date:'dd/MM/yyyy HH:mm' }}</p>
+    </div>
+  </div>
+</section>
