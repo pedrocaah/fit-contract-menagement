@@ -1,29 +1,33 @@
-# dependencies
-node_modules/
-
-# angular
-.angular/
-dist/
-
-# logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# ide
-.idea/
-.vscode/
-
-# system
-.DS_Store
-Thumbs.db
-
-# backend leftovers
+HELP.md
 target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
 
-# optional local tool configs
-.claude/
-.cursor/
-.gemini/
-.junie/
-.windsurf/
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
