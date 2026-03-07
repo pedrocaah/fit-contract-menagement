@@ -50,10 +50,10 @@ button {
   cursor: pointer;
 }
 
-.details {
-  margin-top: 24px;
-  display: grid;
-  gap: 10px;
+.success {
+  margin-top: 16px;
+  color: #166534;
+  font-weight: 600;
 }
 
 .error,

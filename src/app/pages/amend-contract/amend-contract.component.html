@@ -1,13 +1,13 @@
 <section class="page">
   <div class="card">
-    <h2>Criar contrato</h2>
-    <p class="subtitle">Preencha os dados para registrar um novo contrato.</p>
+    <h2>Aditar contrato</h2>
+    <p class="subtitle">Informe o número do contrato e os novos dados para alteração.</p>
 
     <form [formGroup]="form" (ngSubmit)="submit()" class="form">
       <div class="field">
-        <label for="numberCnpj">CNPJ</label>
-        <input id="numberCnpj" type="text" formControlName="numberCnpj" placeholder="Somente números" />
-        <small class="error" *ngIf="hasError('numberCnpj')">Informe um CNPJ com 14 dígitos.</small>
+        <label for="contractNumber">Número do contrato</label>
+        <input id="contractNumber" type="text" formControlName="contractNumber" />
+        <small class="error" *ngIf="hasError('contractNumber')">Campo obrigatório.</small>
       </div>
 
       <div class="field">
@@ -35,7 +35,7 @@
       </div>
 
       <button type="submit" [disabled]="loading">
-        {{ loading ? 'Salvando...' : 'Criar contrato' }}
+        {{ loading ? 'Salvando...' : 'Salvar alterações' }}
       </button>
     </form>
 

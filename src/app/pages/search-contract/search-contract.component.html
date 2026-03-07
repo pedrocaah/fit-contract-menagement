@@ -1,78 +1,32 @@
 <section class="page">
-  <div class="layout">
-    <div class="card">
-      <h2>Buscar contrato</h2>
-      <p class="subtitle">Informe o número do contrato para consultar e editar.</p>
+  <div class="card">
+    <h2>Buscar contrato</h2>
+    <p class="subtitle">Informe o número do contrato para consultar os dados.</p>
 
-      <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
-        <div class="field">
-          <label for="contractNumber">Número do contrato</label>
-          <input id="contractNumber" type="text" formControlName="contractNumber" placeholder="Ex.: 01" />
-          <small class="error" *ngIf="hasSearchError()">Campo obrigatório.</small>
-        </div>
-
-        <button type="submit" [disabled]="loading">
-          {{ loading ? 'Buscando...' : 'Buscar contrato' }}
-        </button>
-      </form>
-
-      <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
-      <p class="success" *ngIf="feedbackMessage">{{ feedbackMessage }}</p>
-    </div>
-
-    <div class="card" *ngIf="foundContract">
-      <h2>Detalhes do contrato</h2>
-
-      <div class="details">
-        <p><strong>Número:</strong> {{ foundContract.contractNumber }}</p>
-        <p><strong>CNPJ:</strong> {{ foundContract.numberCnpj }}</p>
-        <p><strong>Status:</strong> {{ foundContract.status }}</p>
-        <p><strong>Criado em:</strong> {{ foundContract.contractCreatedAt | date:'dd/MM/yyyy HH:mm' }}</p>
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="form">
+      <div class="field">
+        <label for="contractNumber">Número do contrato</label>
+        <input id="contractNumber" type="text" formControlName="contractNumber" placeholder="Ex.: 01" />
+        <small class="error" *ngIf="hasSearchError()">Campo obrigatório.</small>
       </div>
 
-      <hr />
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Buscando...' : 'Buscar contrato' }}
+      </button>
+    </form>
 
-      <h3>Aditamento</h3>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
 
-      <form [formGroup]="amendmentForm" (ngSubmit)="saveAmendment()" class="edit-form">
-        <div class="field">
-          <label for="enterpriseName">Nome da empresa</label>
-          <input id="enterpriseName" type="text" formControlName="enterpriseName" />
-          <small class="error" *ngIf="hasAmendmentError('enterpriseName')">Campo obrigatório.</small>
-        </div>
-
-        <div class="field">
-          <label for="legalName">Razão social</label>
-          <input id="legalName" type="text" formControlName="legalName" />
-          <small class="error" *ngIf="hasAmendmentError('legalName')">Campo obrigatório.</small>
-        </div>
-
-        <div class="field">
-          <label for="enterpriseAdress">Endereço</label>
-          <input id="enterpriseAdress" type="text" formControlName="enterpriseAdress" />
-          <small class="error" *ngIf="hasAmendmentError('enterpriseAdress')">Campo obrigatório.</small>
-        </div>
-
-        <div class="field">
-          <label for="nameCEO">CEO</label>
-          <input id="nameCEO" type="text" formControlName="nameCEO" />
-          <small class="error" *ngIf="hasAmendmentError('nameCEO')">Campo obrigatório.</small>
-        </div>
-
-        <div class="actions">
-          <button type="submit" [disabled]="saving">
-            {{ saving ? 'Salvando...' : 'Salvar alterações' }}
-          </button>
-
-          <button
-            type="button"
-            class="danger"
-            (click)="inactivate()"
-            [disabled]="inactivating || foundContract.status === 'INATIVO'">
-            {{ inactivating ? 'Inativando...' : 'Inativar contrato' }}
-          </button>
-        </div>
-      </form>
+    <div class="details" *ngIf="foundContract">
+      <h3>Detalhes do contrato</h3>
+      <p><strong>Número:</strong> {{ foundContract.contractNumber }}</p>
+      <p><strong>CNPJ:</strong> {{ foundContract.numberCnpj }}</p>
+      <p><strong>Nome da empresa:</strong> {{ foundContract.enterpriseName }}</p>
+      <p><strong>Razão social:</strong> {{ foundContract.legalName }}</p>
+      <p><strong>Endereço:</strong> {{ foundContract.enterpriseAdress }}</p>
+      <p><strong>CEO:</strong> {{ foundContract.nameCEO }}</p>
+      <p><strong>Status:</strong> {{ foundContract.status }}</p>
+      <p><strong>Criado em:</strong> {{ foundContract.contractCreatedAt | date:'dd/MM/yyyy HH:mm' }}</p>
     </div>
   </div>
 </section>

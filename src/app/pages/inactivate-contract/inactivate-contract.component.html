@@ -1,0 +1,21 @@
+<section class="page">
+  <div class="card">
+    <h2>Excluir contrato</h2>
+    <p class="subtitle">Informe o número do contrato para inativação.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form">
+      <div class="field">
+        <label for="contractNumber">Número do contrato</label>
+        <input id="contractNumber" type="text" formControlName="contractNumber" />
+        <small class="error" *ngIf="hasError()">Campo obrigatório.</small>
+      </div>
+
+      <button type="submit" class="danger" [disabled]="loading">
+        {{ loading ? 'Inativando...' : 'Inativar contrato' }}
+      </button>
+    </form>
+
+    <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+    <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+  </div>
+</section>

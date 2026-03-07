@@ -1,21 +1,16 @@
 .page {
   display: flex;
   justify-content: center;
-  padding: 24px;
 }
 
 .card {
   width: 100%;
-  max-width: 640px;
+  max-width: 680px;
   background: #ffffff;
   border: 1px solid #e5e7eb;
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
-}
-
-h2 {
-  margin: 0 0 8px;
 }
 
 .subtitle {
@@ -43,11 +38,6 @@ input {
   border-radius: 10px;
   padding: 0 12px;
   font-size: 14px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #111827;
 }
 
 button {
